@@ -459,7 +459,10 @@ def create_meme_image(text, filename="generated_meme.png"):
         text_color = (0, 0, 0)  # Black text
 
         d = ImageDraw.Draw(img)
-
+        img_width = 400  # Further decreased width
+        img_height = 250 # Further decreased height
+        # Resize the image to the desired dimensions
+        img = img.resize((img_width, img_height), Image.LANCZOS)
         # --- Robust Font Loading ---
         font_size = int(img.height * 0.07) # Adjust font size relative to image height
         font = ImageFont.load_default() # Start with a reliable default font
