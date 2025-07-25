@@ -1,11 +1,12 @@
 services:
   - type: web
-    name: meme-generator
+    name: coding-meme-generator
     env: python
-    plan: free
-    buildCommand: ""
-    startCommand: gunicorn app:app
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
+    # Optional: If you need a specific Python version, add it here
+    # pythonVersion: 3.9.18 # Example
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.10
-    autoDeploy: true
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      # Add other environment variables if needed
