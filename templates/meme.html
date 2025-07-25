@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Coding Meme!</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body
+    class="bg-gradient-to-br from-blue-400 to-purple-600 min-h-screen flex flex-col items-center justify-center p-4 relative"
+  >
+    <!-- Removed overflow-hidden from body to allow scrolling -->
+    <!-- Added py-8 for vertical padding, ensuring content isn't cut off -->
+
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <div class="shape-blob one animate-blob"></div>
+      <div class="shape-blob two animate-blob animation-delay-2000"></div>
+      <div class="shape-blob three animate-blob animation-delay-4000"></div>
+      <div class="shape-blob four animate-blob animation-delay-6000"></div>
+    </div>
+
+    <div
+      class="relative z-10 bg-white p-8 rounded-3xl shadow-2xl max-w-5xl w-full mx-auto text-center transform transition-all duration-500 ease-in-out scale-95 hover:scale-100 animate-fade-in-up border-4 border-transparent bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-80 border-opacity-60 border-gradient-br from-blue-300 to-purple-500 my-8"
+    >
+      <!-- Increased max-w to 5xl for wider layout, added my-8 for vertical margin -->
+
+      <h1
+        class="text-4xl font-extrabold text-gray-900 mb-6 animate-slide-in-left"
+      >
+        <i class="fas fa-laugh-squint text-orange-500 mr-3"></i> Here's Your
+        Coding Meme!
+      </h1>
+
+      <div class="mb-6 animate-fade-in animation-delay-500">
+        <p class="text-xl font-semibold text-gray-700">
+          Your determined skill level:
+          <span class="text-blue-600 font-extrabold animate-pulse-text"
+            >{{ skill_level_display }}</span
+          >
+        </p>
+      </div>
+
+      <div
+        class="meme-container mb-8 relative overflow-hidden rounded-lg shadow-xl animate-scale-in"
+      >
+        {% if meme_image_url %}
+        <img
+          src="{{ meme_image_url }}"
+          alt="Generated Meme"
+          class="w-full h-auto rounded-lg transition-transform duration-500 ease-in-out hover:scale-105"
+          onerror="this.onerror=null;this.src='https://placehold.co/800x400/cccccc/333333?text=Meme+Image+Failed+to+Load';"
+        />
+        {% else %}
+        <div
+          class="w-full h-64 bg-gray-200 flex items-center justify-center rounded-lg text-gray-500"
+        >
+          <p class="text-lg">Meme image could not be generated.</p>
+        </div>
+        {% endif %}
+        <p
+          class="text-xl font-semibold text-gray-800 mt-4 p-2 bg-gray-100 rounded-lg shadow-inner animate-fade-in animation-delay-700"
+        >
+          {{ meme_text }}
+        </p>
+      </div>
+
+      <div class="music-player mb-8 animate-fade-in animation-delay-1000">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+          <i class="fas fa-volume-up text-green-600 mr-2"></i>Background Audio
+        </h2>
+        <!-- Audio will play automatically ONCE -->
+        <audio autoplay class="w-full rounded-lg shadow-md">
+          <source src="{{ background_music_url }}" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <p class="text-sm text-gray-600 mt-2">
+          This audio is dynamically generated based on your skill level!
+        </p>
+      </div>
+
+      <a
+        href="/"
+        class="w-full inline-block bg-gradient-to-r from-green-500 to-teal-500 text-white font-extrabold py-3 px-6 rounded-xl shadow-lg hover:from-green-600 hover:to-teal-600 focus:outline-none focus:ring-4 focus:ring-green-400 focus:ring-opacity-75 transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 animate-bounce-once"
+      >
+        <i class="fas fa-redo-alt mr-2"></i> Generate Another Meme!
+      </a>
+    </div>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </body>
+</html>
