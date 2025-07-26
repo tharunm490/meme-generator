@@ -25,6 +25,8 @@ os.makedirs(CORRECT_IMAGES_DIR, exist_ok=True)
 
 
 app = Flask(__name__)
+app.config['PROPAGATE_EXCEPTIONS'] = True
+
 
 # --- IMPORTANT: Set a strong secret key for session management! ---
 # In production, this should be a complex, random string stored in an environment variable.
