@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -146,8 +146,8 @@
         <p class="meme-text">{{ meme_text }}</p>
         <p class="skill-level">Skill Level: {{ skill_level_display }}</p>
 
-        <!-- Audio Player with Autoplay -->
-        <audio controls autoplay>
+        Audio Player with Autoplay -->
+<!-- <audio controls autoplay>
           <source src="{{ background_music_url }}" type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
@@ -157,6 +157,211 @@
         </button>
       </div>
     </main>
+
+    <footer class="footer">
+      <p class="text-gray-300 text-sm">
+        &copy; 2025 Vikasa Memes. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Meme!</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh; /* Ensures body takes full viewport height */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; /* Distribute space between header, content, footer */
+        color: #fff;
+        overflow: hidden; /* Prevent scrolling on the body */
+      }
+      .header {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        flex-shrink: 0; /* Prevent header from shrinking */
+      }
+      .footer {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        padding: 1rem 2rem;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        flex-shrink: 0; /* Prevent footer from shrinking */
+      }
+      .main-content-wrapper {
+        flex-grow: 1; /* Allows this wrapper to take up remaining space */
+        display: flex;
+        align-items: center; /* Center content vertically */
+        justify-content: center; /* Center content horizontally */
+        width: 100%;
+        padding: 1rem; /* Add some padding around the container */
+        box-sizing: border-box; /* Include padding in width calculation */
+      }
+      .container {
+        background-color: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 1.5rem; /* Reduced padding for smaller content */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        max-width: 380px; /* Reduced max-width for smaller content */
+        width: 100%; /* Make it responsive up to max-width */
+        text-align: center;
+        animation: fadeIn 0.8s ease-out;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 0; /* Allow content to shrink if needed */
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .meme-image {
+        max-width: 250px; /* Explicitly match generated image size */
+        max-height: 250px; /* Explicitly match generated image size */
+        width: auto; /* Maintain aspect ratio */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 10px;
+        margin-bottom: 1rem; /* Reduced margin */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        object-fit: contain; /* Ensures image fits within its bounds without cropping */
+      }
+      .meme-text {
+        font-size: 1.2rem; /* Slightly smaller font for compactness */
+        font-weight: 600;
+        margin-bottom: 1rem; /* Reduced margin */
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      .skill-level {
+        font-size: 1rem; /* Slightly smaller font */
+        font-weight: 400;
+        color: #e0e0e0;
+        margin-bottom: 1rem; /* Reduced margin */
+      }
+      .back-button {
+        background-color: #4caf50; /* Green */
+        color: white;
+        padding: 0.6rem 1.2rem; /* Reduced padding */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.95rem; /* Slightly smaller font */
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      .back-button:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+      }
+      .back-button:active {
+        transform: translateY(0);
+      }
+      audio {
+        width: 100%;
+        max-width: 300px; /* Max width for audio player */
+        margin-top: 1rem; /* Reduced margin */
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Responsive adjustments for very small screens */
+      @media (max-width: 480px) {
+        .header,
+        .footer {
+          padding: 0.8rem 1rem;
+        }
+        .container {
+          padding: 1rem;
+          max-width: 95%; /* Allow it to take more width on small screens */
+        }
+        .meme-image {
+          max-width: 200px; /* Even smaller on tiny screens if needed */
+          max-height: 200px;
+        }
+        .meme-text {
+          font-size: 1.1rem;
+        }
+        .skill-level {
+          font-size: 0.9rem;
+        }
+        .back-button {
+          padding: 0.5rem 1rem;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="text-2xl font-bold">Vikasa Memes</div>
+      <nav>
+        <a
+          href="/"
+          class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
+          >Home</a
+        >
+      </nav>
+    </header>
+
+    <div class="main-content-wrapper">
+      <div class="container">
+        <h1 class="text-3xl font-bold mb-3">Here's Your Meme!</h1>
+        <img
+          src="{{ meme_image_url }}"
+          alt="Generated Meme"
+          class="meme-image"
+        />
+        <p class="meme-text">{{ meme_text }}</p>
+        <p class="skill-level">Skill Level: {{ skill_level_display }}</p>
+
+        <!-- Audio Player with Autoplay -->
+        <audio controls autoplay>
+          <source src="{{ background_music_url }}" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+
+        <button onclick="window.location.href='/quiz'" class="back-button mt-4">
+          Try Another Question!
+        </button>
+      </div>
+    </div>
 
     <footer class="footer">
       <p class="text-gray-300 text-sm">
