@@ -1,215 +1,141 @@
-/* static/css/style.css */
+/* Custom Animations and Gradients for Tailwind CSS */
 
-/* Base styles for Inter font and body */
-body {
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+/* Blob Shapes for Background */
+.shape-blob {
+    background: linear-gradient(to right, #60a5fa, #a78bfa); /* blue-400 to purple-400 */
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0.6;
+    filter: blur(80px); /* Adjust blur for desired effect */
 }
 
-/* Custom styles for form elements (optional, Tailwind handles most) */
-.form-radio:checked {
-    background-color: #7c3aed; /* Purple-600 */
-    border-color: #7c3aed;
+.shape-blob.one {
+    top: 10%;
+    left: 10%;
+    width: 200px;
+    height: 200px;
 }
 
-.form-radio:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.5); /* Purple-500 with opacity */
+.shape-blob.two {
+    bottom: 5%;
+    right: 15%;
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(to right, #a78bfa, #c084fc); /* purple-400 to purple-500 */
 }
 
-/* Ensure audio player is responsive */
-audio {
-    max-width: 100%;
-    height: 50px; /* Standard height for audio controls */
+.shape-blob.three {
+    top: 50%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(to right, #818cf8, #6366f1); /* indigo-400 to indigo-500 */
 }
 
-/* General button/link hover effects */
-button:hover,
-a.inline-block:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+.shape-blob.four {
+    top: 20%;
+    right: 5%;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(to right, #38b2ac, #319795); /* teal-400 to teal-500 */
 }
 
-/* Ensure image scaling is smooth */
-img {
-    display: block; /* Remove extra space below image */
-    max-width: 100%; /* Ensure image doesn't overflow container */
-    height: auto; /* Maintain aspect ratio */
-}
-
-/* Tailwind's default transitions are good, but we can add more specific ones */
-.transition-all {
-    transition-property: all;
-    transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.transform {
-    transform: var(--tw-transform);
-}
-
-.hover\:scale-105:hover {
-    --tw-scale-x: 1.05;
-    --tw-scale-y: 1.05;
-}
-
-/* Custom Animations */
-
-/* Fade In from Bottom */
-@keyframes fadeInFromBottom {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* Keyframe Animations */
+@keyframes blob {
+    0% {
+        transform: scale(1) translate(0, 0);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    30% {
+        transform: scale(1.2) translate(20px, -30px);
+    }
+    60% {
+        transform: scale(0.9) translate(-10px, 40px);
+    }
+    100% {
+        transform: scale(1) translate(0, 0);
     }
 }
-.animate-fade-in-up {
-    animation: fadeInFromBottom 0.8s ease-out forwards;
+
+.animate-blob {
+    animation: blob 10s infinite alternate;
 }
 
-/* Slide In from Left */
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-.animate-slide-in-left {
-    animation: slideInLeft 0.7s ease-out forwards;
+.animation-delay-2000 {
+    animation-delay: 2s;
 }
 
-/* Fade In (general) */
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+.animation-delay-6000 {
+    animation-delay: 6s;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
 .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
+    animation: fadeIn 1s ease-out forwards;
 }
 
-/* Pulse for Question Text */
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in-up {
+    animation: slideInUp 0.8s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
 @keyframes pulseFade {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+    50% { opacity: 0.8; }
 }
+
 .animate-pulse-fade {
     animation: pulseFade 2s infinite ease-in-out;
 }
 
-/* Scale In for Meme Image */
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-.animate-scale-in {
-    animation: scaleIn 0.6s ease-out forwards;
-}
-
-/* Text Pulse for Skill Level */
-@keyframes pulseText {
-    0%, 100% { transform: scale(1); color: #2563eb; } /* blue-600 */
-    50% { transform: scale(1.05); color: #6d28d9; } /* purple-700 */
-}
-.animate-pulse-text {
-    animation: pulseText 2s infinite alternate ease-in-out;
-}
-
-/* Subtle Bounce for Buttons (once on load) */
 @keyframes bounceOnce {
     0%, 100% { transform: translateY(0); }
-    20% { transform: translateY(-5px); }
+    20% { transform: translateY(-10px); }
     40% { transform: translateY(0); }
-    60% { transform: translateY(-2px); }
+    60% { transform: translateY(-5px); }
     80% { transform: translateY(0); }
 }
+
 .animate-bounce-once {
-    animation: bounceOnce 1.5s ease-out 1; /* Play once */
+    animation: bounceOnce 1s ease-out;
 }
 
-
-/* Animated Background Blobs */
-@keyframes blob {
-    0% {
-        transform: scale(1) translate(0px, 0px);
-    }
-    33% {
-        transform: scale(1.1) translate(30px, -50px);
-    }
-    66% {
-        transform: scale(0.9) translate(-20px, 20px);
-    }
-    100% {
-        transform: scale(1) translate(0px, 0px);
-    }
-}
-
-.shape-blob {
-    background: rgba(255, 255, 255, 0.1); /* White with transparency */
-    border-radius: 50%;
-    position: absolute;
-    filter: blur(80px); /* Soft blur effect */
-    opacity: 0.7;
-    animation: blob 10s infinite alternate; /* Longer animation for subtle movement */
-}
-
-.shape-blob.one {
-    width: 200px;
-    height: 200px;
-    left: 10%;
-    top: 10%;
-    animation-duration: 12s;
-}
-.shape-blob.two {
-    width: 300px;
-    height: 300px;
-    right: 5%;
-    bottom: 15%;
-    animation-duration: 15s;
-    animation-delay: 2s;
-}
-.shape-blob.three {
-    width: 250px;
-    height: 250px;
-    left: 25%;
-    bottom: 5%;
-    animation-duration: 10s;
-    animation-delay: 4s;
-}
-.shape-blob.four {
-    width: 150px;
-    height: 150px;
-    right: 20%;
-    top: 20%;
-    animation-duration: 13s;
-    animation-delay: 6s;
-}
-
-/* Utility for animation delay (Tailwind doesn't have this built-in for custom animations) */
-.animation-delay-2000 { animation-delay: 2s; }
-.animation-delay-4000 { animation-delay: 4s; }
-.animation-delay-6000 { animation-delay: 6s; }
-.animation-delay-500 { animation-delay: 0.5s; }
-.animation-delay-700 { animation-delay: 0.7s; }
-.animation-delay-1000 { animation-delay: 1s; }
-
-/* Custom Gradient Border for Main Card */
+/* Custom Gradient Border for the main container */
 .border-gradient-br {
     border-image-slice: 1;
     border-image-source: linear-gradient(to bottom right, var(--tw-gradient-from), var(--tw-gradient-to));
 }
 
-/* Ensure Font Awesome is loaded for icons */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+/* Define CSS variables for Tailwind gradients used in custom properties */
+.border-gradient-br.from-blue-300 {
+    --tw-gradient-from: #93c5fd; /* Tailwind blue-300 */
+}
+.border-gradient-br.to-purple-500 {
+    --tw-gradient-to: #a855f7; /* Tailwind purple-500 */
+}
+
+/* Ensure font-awesome icons are visible */
+.fa-terminal, .fa-star, .fa-code, .fa-question-circle, .fa-keyboard, .fa-hat-wizard, .fa-laugh-squint, .fa-volume-up, .fa-redo-alt {
+    display: inline-block;
+    vertical-align: middle;
+}
