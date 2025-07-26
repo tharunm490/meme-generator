@@ -1220,6 +1220,5 @@ def health_check():
 
 
 if __name__ == '__main__':
-    # This block is for local development.
-    # For Render deployment, gunicorn (specified in Procfile) will run the app.
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=10000)
+
