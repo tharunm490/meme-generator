@@ -138,7 +138,7 @@
   </head>
   <body>
     <header class="header">
-      <div class="text-2xl font-bold">Vikasa Memes</div>
+      <div class="text-2xl font-bold">Viksha Memes</div>
       <nav>
         <a
           href="/"
@@ -234,6 +234,16 @@
 
       // Load questions on page load
       document.addEventListener('DOMContentLoaded', loadQuestions);
+
+  // Form validation before submission
+  document.getElementById("quizForm").addEventListener("submit", function (e) {
+    const answerInput = document.getElementById("answer");
+    if (answerInput.value.trim() === "") {
+      e.preventDefault(); // Stop form submission
+      alert("⚠️ Please answer the question to get a meme.");
+      answerInput.focus();
+    }
+  });
     </script>
   </body>
 </html>
